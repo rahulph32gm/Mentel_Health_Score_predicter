@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindPulse AI — Mental Health Score Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+<div class="app">
+
+  <!-- ============ HEADER ============ -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">MindPulse AI</span>
+    </div>
+    <div class="topbar-right">
+      <div class="api-badge" id="apiBadge" title="Click to configure API URL">
+        <span class="api-dot" id="apiDot"></span>
+        <span id="apiStatusText">Checking API…</span>
+      </div>
+      <button class="btn-new-analysis" id="resetBtn">+ New Analysis</button>
+      <a href="insights.html" class="btn-insights">📊 Model Insights</a>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <span class="theme-icon sun">☀️</span>
+        <span class="theme-icon moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="body-shell">
+    <main class="main">
+      <div class="page-title">
+        <span class="title-emoji">🧠</span>
+        <h1>Mental Health Score Predictor</h1>
+      </div>
+      <p class="page-sub">Analyze usage patterns and behavioral metrics to forecast stress and mental wellness.</p>
+
+      <div class="layout">
+        <!-- ---------- LEFT / CENTER: FORM ---------- -->
+        <div class="col-form">
+
+          <!-- Demographic Profiling -->
+          <section class="card">
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3"/><path d="M2 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><circle cx="17" cy="9" r="2.6"/><path d="M14.5 20c.3-2.6 2.3-4 4.3-4 2.4 0 4.5 1.5 4.7 4"/></svg>
+              Demographic Profiling
+            </h2>
+            <div class="grid-2">
+              <div class="field">
+                <label>Age</label>
+                <div class="slider-row">
+                  <input type="range" id="age" min="10" max="100" value="21">
+                  <div class="value-box" id="ageVal">21</div>
+                </div>
+              </div>
+              <div class="field">
+                <label>Gender</label>
+                <div class="segmented" id="genderSeg">
+                  <button type="button" data-val="Male">Male</button>
+                  <button type="button" data-val="Female" class="active">Female</button>
+                </div>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label>Country Code</label>
+                <select id="country"></select>
+              </div>
+              <div class="field">
+                <label>Academic / Professional Level</label>
+                <select id="academicLevel">
+                  <option>High School</option>
+                  <option selected>Undergraduate</option>
+                  <option>Graduate</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <!-- Digital Consumption -->
+          <section class="card">
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 18h4"/></svg>
+              Digital Consumption
+            </h2>
+
+            <div class="field">
+              <label>Primary Platform</label>
+              <div class="platform-grid" id="platformGrid"></div>
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label>Purpose of Use</label>
+                <div class="pill-group" id="purposePill">
+                  <button type="button" data-val="Networking">Networking</button>
+                  <button type="button" data-val="Education">Education</button>
+                  <button type="button" data-val="Entertainment" class="active">Entertainment</button>
+                  <button type="button" data-val="News">News</button>
+                </div>
+              </div>
+              <div class="field">
+                <label>Daily Unlocks</label>
+                <div class="input-suffix">
+                  <input type="number" id="dailyUnlocks" min="0" value="85">
+                  <span>times/day</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label>Avg Daily Usage Hours</label>
+                <div class="slider-row">
+                  <input type="range" id="avgUsage" min="0" max="24" step="0.1" value="4.5">
+                  <div class="value-box" id="avgUsageVal">4.5</div>
+                </div>
+              </div>
+              <div class="field">
+                <label>Study Hours</label>
+                <div class="slider-row">
+                  <input type="range" id="studyHours" min="0" max="24" step="0.1" value="4">
+                  <div class="value-box" id="studyHoursVal">4.0</div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label>Physical Activity Hours</label>
+                <div class="slider-row">
+                  <input type="range" id="activityHours" min="0" max="24" step="0.1" value="2">
+                  <div class="value-box" id="activityHoursVal">2.0</div>
+                </div>
+              </div>
+              <div class="field">
+                <label>Sleep Hours Per Night</label>
+                <div class="slider-row">
+                  <input type="range" id="sleepHours" min="0" max="24" step="0.1" value="7">
+                  <div class="value-box" id="sleepHoursVal">7.0</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Stress Baseline -->
+          <section class="card">
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 15h8M9 9h.01M15 9h.01"/></svg>
+              Current Stress Baseline
+            </h2>
+            <div class="mood-grid" id="moodGrid">
+              <button type="button" class="mood-card" data-mood="Low">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+                <span>Low</span>
+              </button>
+              <button type="button" class="mood-card active" data-mood="Medium">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 15h8M9 9h.01M15 9h.01"/></svg>
+                <span>Medium</span>
+              </button>
+              <button type="button" class="mood-card" data-mood="High">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 16s1.5-2 4-2 4 2 4 2M9 9h.01M15 9h.01"/></svg>
+                <span>High</span>
+              </button>
+              <button type="button" class="mood-card" data-mood="Very High">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 17s1.5-3 4-3 4 3 4 3M8.5 8.5l1.5 1M15.5 8.5l-1.5 1"/></svg>
+                <span>V. High</span>
+              </button>
+            </div>
+          </section>
+
+          <button class="submit-btn" id="calcBtn">
+            <span class="spinner" id="spinner"></span>
+            <span id="calcBtnText">Calculate My Score</span>
+          </button>
+        </div>
+
+        <!-- ---------- RIGHT: RESULTS ---------- -->
+        <aside class="card results-card">
+          <h2 class="card-title">Prediction Results</h2>
+
+          <div class="gauge-wrap">
+            <div class="gauge">
+              <svg width="220" height="220" viewBox="0 0 220 220">
+                <circle cx="110" cy="110" r="94" class="gauge-track" stroke-width="16" fill="none"/>
+                <circle id="gaugeArc" cx="110" cy="110" r="94" stroke-width="16" fill="none"
+                  stroke-linecap="round" stroke-dasharray="0 590.6" transform="rotate(-90 110 110)"/>
+              </svg>
+              <div class="gauge-center" id="gaugeCenter">
+                <div class="gauge-empty">Fill in the form and calculate to see your predicted score</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="resultBoxes"></div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">© 2026 MindPulse AI. Precision Mental Health Analytics — predictions are informational, not a clinical diagnosis.</footer>
+</div>
+
+<!-- API config modal -->
+<div class="modal-backdrop" id="apiModal">
+  <div class="modal">
+    <h3>API connection</h3>
+    <p>Predictions are sent to your FastAPI backend's <code>/predict</code> endpoint. Set the base URL where <code>main.py</code> is running.</p>
+    <input type="text" id="apiUrlInput" placeholder="http://127.0.0.1:8000">
+    <div class="modal-actions">
+      <button class="btn-cancel" id="apiCancel">Cancel</button>
+      <button class="btn-save" id="apiSave">Save &amp; Recheck</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindPulse AI — Model Insights &amp; Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+<div class="insights-app">
+
+  <!-- ============ HEADER ============ -->
+  <header class="topbar insights-topbar">
+    <div class="brand">
+      <span class="brand-mark">MindPulse AI</span>
+      <span class="brand-sub">— Model Insights &amp; Analytics</span>
+    </div>
+    <div class="topbar-right">
+      <a href="index.html" class="btn-primary">← Back to Predictor App</a>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <span class="theme-icon sun">☀️</span>
+        <span class="theme-icon moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="insights-layout">
+
+    <!-- ---------- SIDEBAR: SHEET INDEX ---------- -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-label">Sheet Index</div>
+        <nav class="sidebar-nav" id="sidebarNav">
+          <a href="#sheet-01" class="sidebar-link active" data-target="sheet-01"><span class="sidebar-num">01</span> Statistical Analysis</a>
+          <a href="#sheet-02" class="sidebar-link" data-target="sheet-02"><span class="sidebar-num">02</span> Target Distribution</a>
+          <a href="#sheet-03" class="sidebar-link" data-target="sheet-03"><span class="sidebar-num">03</span> X Distributions &amp; Skewness</a>
+          <a href="#sheet-04" class="sidebar-link" data-target="sheet-04"><span class="sidebar-num">04</span> Categorical &amp; Hypothesis</a>
+          <a href="#sheet-05" class="sidebar-link" data-target="sheet-05"><span class="sidebar-num">05</span> Correlations &amp; Scatter</a>
+          <a href="#sheet-06" class="sidebar-link" data-target="sheet-06"><span class="sidebar-num">06</span> Stacking Pipeline</a>
+          <a href="#sheet-07" class="sidebar-link" data-target="sheet-07"><span class="sidebar-num">07</span> Model Performance &amp; R²</a>
+          <a href="#sheet-08" class="sidebar-link" data-target="sheet-08"><span class="sidebar-num">08</span> Error Metrics (MSE/MAE)</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ---------- MAIN CONTENT ---------- -->
+    <main class="insights-main">
+
+      <!-- SHEET 01: Statistical Analysis -->
+      <section class="insight-card" id="sheet-01">
+        <div class="insight-card-header">
+          <h4 class="insight-card-title"><span class="sheet-eyebrow">Sheet 01</span>Statistical Analysis (Summary Statistics)</h4>
+          <div class="view-toggle">
+            <button class="tab-btn active" data-view="num-stats">📊 Numerical Features</button>
+            <button class="tab-btn" data-view="cat-stats">🏷️ Categorical Features</button>
+          </div>
+        </div>
+        <div class="insight-card-body">
+          <!-- Numerical Summary Table -->
+          <div class="view-pane active" data-view="num-stats">
+            <h5 style="font-family: var(--font-heading); margin: 0 0 10px 0; color: var(--primary); font-size: 13px;">
+              📐 Numerical Features Summary (df.describe())
+            </h5>
+            <div style="overflow-x: auto;">
+              <table class="insight-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Age</th>
+                    <th>Avg_Daily_Usage_Hours</th>
+                    <th>Daily_Unlocks</th>
+                    <th>Study_Hours</th>
+                    <th>Physical_Activity_Hours</th>
+                    <th>Sleep_Hours_Per_Night</th>
+                    <th>Mental_Health_Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>count</b></td><td>5000.0</td><td>5000.0</td><td>5000.0</td><td>5000.0</td><td>5000.0</td><td>5000.0</td><td>5000.0</td></tr>
+                  <tr><td><b>mean</b></td><td>20.82180</td><td>5.078460</td><td>171.452600</td><td>3.008420</td><td>1.751000</td><td>6.634580</td><td>6.230980</td></tr>
+                  <tr><td><b>std</b></td><td>1.73662</td><td>1.653913</td><td>42.858254</td><td>1.637018</td><td>0.668398</td><td>1.221391</td><td>1.278701</td></tr>
+                  <tr><td><b>min</b></td><td>18.00000</td><td>1.000000</td><td>62.000000</td><td>0.300000</td><td>-0.400000</td><td>3.600000</td><td>3.600000</td></tr>
+                  <tr><td><b>25%</b></td><td>19.00000</td><td>3.800000</td><td>140.000000</td><td>1.500000</td><td>1.300000</td><td>5.600000</td><td>5.100000</td></tr>
+                  <tr><td><b>50%</b></td><td>21.00000</td><td>5.000000</td><td>171.000000</td><td>2.800000</td><td>1.700000</td><td>6.600000</td><td>6.100000</td></tr>
+                  <tr><td><b>75%</b></td><td>22.00000</td><td>6.300000</td><td>204.000000</td><td>4.200000</td><td>2.200000</td><td>7.500000</td><td>7.100000</td></tr>
+                  <tr><td><b>max</b></td><td>24.00000</td><td>8.800000</td><td>273.000000</td><td>8.300000</td><td>4.100000</td><td>9.900000</td><td>9.400000</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Categorical Summary Table -->
+          <div class="view-pane" data-view="cat-stats">
+            <h5 style="font-family: var(--font-heading); margin: 0 0 10px 0; color: var(--primary); font-size: 13px;">
+              🏷️ Categorical Features Summary (df.describe(include='O'))
+            </h5>
+            <div style="overflow-x: auto;">
+              <table class="insight-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Gender</th>
+                    <th>Country</th>
+                    <th>Academic_Level</th>
+                    <th>Most_Used_Platform</th>
+                    <th>Purpose_Of_Use</th>
+                    <th>Stress_Level</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>count</b></td><td>5000</td><td>5000</td><td>5000</td><td>5000</td><td>5000</td><td>5000</td></tr>
+                  <tr><td><b>unique</b></td><td>2</td><td>111</td><td>3</td><td>12</td><td>4</td><td>4</td></tr>
+                  <tr class="row-highlight"><td><b>top</b></td><td>Male</td><td>Other</td><td>Undergraduate</td><td>Instagram</td><td>Entertainment</td><td>Very High</td></tr>
+                  <tr><td><b>freq</b></td><td>2635</td><td>1880</td><td>3632</td><td>1130</td><td>2552</td><td>1621</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHEET 02: Target Distribution -->
+      <section class="insight-card" id="sheet-02">
+        <div class="insight-card-header">
+          <h4 class="insight-card-title"><span class="sheet-eyebrow">Sheet 02</span>Target Distribution (Mental_Health_Score)</h4>
+          <div class="view-toggle">
+            <button class="tab-btn active" data-view="plot">📈 Plot View</button>
+            <button class="tab-btn" data-view="code">💻 Python Code</button>
+          </div>
+        </div>
+        <div class="insight-card-body">
+          <div class="view-pane active" data-view="plot">
+            <img class="insight-img" src="assets/plots/Target_Distribution.png" alt="Target Variable Mental Health Score Distribution and Boxplot">
+          </div>
+          <div class="view-pane" data-view="code">
+            <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(14, 5))
+
+plt.subplot(1, 2, 1)
+sns.histplot(
+    df["Mental_Health_Score"],
+    bins=40,
+    kde=True,
+    color="#2EBD07"
+)
+
+plt.subplot(1, 2, 2)
+sns.boxplot(
+    x=df["Mental_Health_Score"],
+    color="yellow"
+)
+
+plt.tight_layout()
+plt.show()</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHEET 03: X Features Distributions & Skewness Analysis -->
+      <section class="insight-card" id="sheet-03">
+        <div class="insight-card-header">
+          <h4 class="insight-card-title"><span class="sheet-eyebrow">Sheet 03</span>X Feature Distributions &amp; Skewness</h4>
+          <div class="view-toggle">
+            <button class="tab-btn active" data-view="dist">📈 Distribution &amp; Outlier Plot</button>
+            <button class="tab-btn" data-view="skew-plot">📊 Skewness Plot</button>
+            <button class="tab-btn" data-view="table">📋 Skewness Table</button>
+            <button class="tab-btn" data-view="code">💻 Python Code</button>
+          </div>
+        </div>
+        <div class="insight-card-body">
+          <div class="view-pane active" data-view="dist">
+            <img class="insight-img" src="assets/plots/Data_Distribution.png" alt="Feature distributions KDE and boxplots">
+          </div>
+          <div class="view-pane" data-view="skew-plot">
+            <img class="insight-img" src="assets/plots/Skewness.png" alt="Numerical features skewness barplot">
+          </div>
+          <div class="view-pane" data-view="table">
+            <h5 style="font-family: var(--font-heading); margin: 0 0 10px 0; color: var(--primary); font-size: 13px;">
+              📐 Numerical Features Skewness Values (Sorted)
+            </h5>
+            <table class="insight-table">
+              <thead>
+                <tr>
+                  <th>Numerical Feature</th>
+                  <th>Skewness Value</th>
+                  <th>Distribution Status / Skew Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-highlight">
+                  <td><b>Study_Hours</b></td>
+                  <td>0.436125</td>
+                  <td>Moderately Right-Skewed (Log1p Transformed)</td>
+                </tr>
+                <tr><td><b>Mental_Health_Score</b></td><td>0.207086</td><td>Slightly Right-Skewed (Target)</td></tr>
+                <tr><td><b>Age</b></td><td>0.155008</td><td>Approximately Symmetric</td></tr>
+                <tr><td><b>Sleep_Hours_Per_Night</b></td><td>0.123919</td><td>Approximately Symmetric</td></tr>
+                <tr><td><b>Physical_Activity_Hours</b></td><td>0.053288</td><td>Symmetric / Normal</td></tr>
+                <tr><td><b>Avg_Daily_Usage_Hours</b></td><td>0.005575</td><td>Near Perfect Normal Distribution</td></tr>
+                <tr><td><b>Daily_Unlocks</b></td><td>0.002309</td><td>Near Perfect Normal Distribution</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="view-pane" data-view="code">
+            <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# 1. Skewness Calculation & Barplot
+plt.figure(figsize=(10, 3))
+skew = df.select_dtypes(include=np.number).skew()
+print(skew.sort_values(ascending=False))
+
+sns.barplot(
+    x=skew, 
+    y=skew.index, 
+    order=skew.sort_values(ascending=False).index, 
+    palette="mako"
+)
+plt.xlabel("Skewness")
+plt.ylabel("Features")
+plt.tight_layout()
+plt.show()
+
+# 2. X Features Distributions & Outliers (KDE + Boxplots)
+print("X features Plots:")
+fig, axes = plt.subplots(4, 3, figsize=(15, 10))
+axes = axes.flatten()
+
+feature_cols = ["Age", "Avg_Daily_Usage_Hours", "Daily_Unlocks", "Study_Hours", "Physical_Activity_Hours", "Sleep_Hours_Per_Night"]
+
+for i, col in enumerate(feature_cols):
+    sns.histplot(df[col], kde=True, color="#2EBD07", ax=axes[i])
+    sns.boxplot(x=df[col], color="yellow", ax=axes[i + 6])
+    if i != 0 and i != 3:
+        axes[i].set_ylabel("")
+
+plt.tight_layout()
+plt.show()</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHEET 04: Categorical Features & Hypothesis Testing -->
+      <section class="insight-card" id="sheet-04">
+        <div class="insight-card-header">
+          <h4 class="insight-card-title"><span class="sheet-eyebrow">Sheet 04</span>Categorical Features &amp; Hypothesis Testing</h4>
+          <div class="view-toggle">
+            <button class="tab-btn active" data-view="plot">📈 Plot View</button>
+            <button class="tab-btn" data-view="table">📋 Data Table</button>
+            <button class="tab-btn" data-view="code">💻 Python Code</button>
+          </div>
+        </div>
+        <div class="insight-card-body">
+          <div class="view-pane active" data-view="plot">
+            <img class="insight-img" src="assets/plots/Catagorical%20Plots.png" alt="Categorical variable box plots">
+          </div>
+          <div class="view-pane" data-view="table">
+            <table class="insight-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Statistical Test</th>
+                  <th>Test Score</th>
+                  <th>P-Value</th>
+                  <th>Decision (H0)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><b>Gender</b></td><td>T-Test (Welch)</td><td>2.3577</td><td>0.018427</td><td class="decision-reject">Reject Null Hypothesis</td></tr>
+                <tr><td><b>Academic_Level</b></td><td>Anova-Test</td><td>26.0339</td><td>0.000000</td><td class="decision-reject">Reject Null Hypothesis</td></tr>
+                <tr><td><b>Most_Used_Platform</b></td><td>Anova-Test</td><td>22.3045</td><td>0.000000</td><td class="decision-reject">Reject Null Hypothesis</td></tr>
+                <tr><td><b>Purpose_Of_Use</b></td><td>Anova-Test</td><td>14.7707</td><td>0.000000</td><td class="decision-reject">Reject Null Hypothesis</td></tr>
+                <tr class="row-highlight"><td><b>Stress_Level</b></td><td>Anova-Test</td><td>2685.9888</td><td>0.000000</td><td class="decision-reject">Reject Null Hypothesis</td></tr>
+                <tr><td><b>Groupd_contry</b></td><td>Anova-Test</td><td>18.3267</td><td>0.000000</td><td class="decision-reject">Reject Null Hypothesis</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="view-pane" data-view="code">
+            <pre><code>from scipy import stats
+import pandas as pd
+
+hypothesis_results = []
+categorical_features = ['Gender', 'Academic_Level', 'Most_Used_Platform', 'Purpose_Of_Use', 'Stress_Level', 'Groupd_contry']
+
+for col in categorical_features:
+    groups = [group['Mental_Health_Score'].dropna() for name, group in df.groupby(col)]
+    if len(groups) == 2:
+        test_score, p_val = stats.ttest_ind(groups[0], groups[1], equal_var=False)
+        test_name = "T-Test"
+    else:
+        test_score, p_val = stats.f_oneway(*groups)
+        test_name = "Anova-Test"
+        
+    decision = "Reject Null Hypothesis" if p_val < 0.05 else "Fail to Reject Null Hypothesis"
+    hypothesis_results.append({
+        "Feature": col, "Test": test_name,
+        "Test_Score": round(test_score, 4), "P-Value": round(p_val, 6),
+        "Decision": decision
+    })
+
+df_hypothesis = pd.DataFrame(hypothesis_results)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHEET 05: Feature Correlations & Scatter Plots -->
+      <section class="insight-card" id="sheet-05">
+        <div class="insight-card-header">
+          <h4 class="insight-card-title"><span class="sheet-eyebrow">Sheet 05</span>Feature Correlations &amp; Eta-Squared</h4>
+          <div class="view-toggle">
+            <button class="tab-btn active" data-view="corr-plot">📈 Correlation Heatmap</button>
+            <button class="tab-btn" data-view="scatter-plot">🔵 Scatter Plots</button>
+            <button class="tab-btn" data-view="table">📋 Data Table</button>
+            <button class="tab-btn" data-view="code">💻 Python Code</button>
+          </div>
+        </div>
+        <div class="insight-card-body">
+          <div class="view-pane active" data-view="corr-plot">
+            <img class="insight-img" src="assets/plots/Corelations.png" alt="Feature correlation heatmap and Eta-score barplot">
+          </div>
+          <div class="view-pane" data-view="scatter-plot">
+            <img class="insight-img" src="assets/plots/Corelation%20Features%20With%20Mentel_HS.png" alt="Mental Health Score vs Usage and Sleep Scatter Plots">
+          </div>
+          <div class="view-pane" data-view="table">
+            <h5 style="font-family: var(--font-heading); margin: 0 0 8px 0; color: var(--primary); font-size: 13px;">
+              📊 Numerical Features Correlation with Mental_Health_Score (Pearson r)
+            </h5>
+            <table class="insight-table" style="margin-bottom: 20px;">
+              <thead>
+                <tr><th>Numerical Feature</th><th>Pearson Correlation (r)</th><th>Relationship Type</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Avg_Daily_Usage_Hours</td><td>-0.816453</td><td>Strong Negative Correlation</td></tr>
+                <tr><td>Daily_Unlocks</td><td>-0.790851</td><td>Strong Negative Correlation</td></tr>
+                <tr><td>Sleep_Hours_Per_Night</td><td>+0.766430</td><td>Strong Positive Correlation</td></tr>
+                <tr><td>Study_Hours</td><td>+0.752626</td><td>Strong Positive Correlation</td></tr>
+                <tr><td>Physical_Activity_Hours</td><td>+0.521374</td><td>Moderate Positive Correlation</td></tr>
+                <tr><td>Age</td><td>+0.100785</td><td>Weak Positive Correlation</td></tr>
+                <tr class="row-highlight"><td>Mental_Health_Score</td><td>1.000000</td><td>Target Variable</td></tr>
+              </tbody>
+            </table>
+
+            <h5 style="font-family: var(--font-heading); margin: 16px 0 8px 0; color: var(--primary); font-size: 13px;">
+              🏷️ Categorical Features Correlation Ratio with Target (Eta-Squared η²)
+            </h5>
+            <table class="insight-table">
+              <thead>
+                <tr><th>Categorical Feature</th><th>Eta-Squared Score (η²)</th><th>Target Impact Level</th></tr>
+              </thead>
+              <tbody>
+                <tr class="row-highlight"><td>Stress_Level</td><td>0.617196</td><td><b>Very High Influence (Top Predictor)</b></td></tr>
+                <tr><td>Country</td><td>0.182166</td><td>Moderate Influence</td></tr>
+                <tr><td>Most_Used_Platform</td><td>0.046689</td><td>Low Influence</td></tr>
+                <tr><td>Academic_Level</td><td>0.010308</td><td>Minor Influence</td></tr>
+                <tr><td>Purpose_Of_Use</td><td>0.008687</td><td>Negligible Influence</td></tr>
+                <tr><td>Gender</td><td>0.001146</td><td>No Significant Influence</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="view-pane" data-view="code">
+            <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Scatter Plots
+plt.figure(figsize=(14, 5))
+plt.subplot(1, 2, 1)
+sns.scatterplot(y=df["Mental_Health_Score"], x=df["Avg_Daily_Usage_Hours"], hue=df["Stress_Level"])
+plt.subplot(1, 2, 2)
+sns.scatterplot(y=df["Mental_Health_Score"], x=df["Sleep_Hours_Per_Night"], hue=df["Stress_Level"])
+plt.ylabel("")
+plt.tight_layout()
+plt.show()
+
+# Pearson Correlation
+corr = df.corr(numeric_only=True)
+print(corr["Mental_Health_Score"])
+
+# Eta-Squared Score
+cat_cols = df.select_dtypes(exclude=np.number).columns
+grand_mean = df["Mental_Health_Score"].mean()
+ss_total = np.sum((df["Mental_Health_Score"] - grand_mean) ** 2)
+
+eta_score_dict = {"Feature": [], "Eta_Score": []}
+for col in cat_cols.dropna().unique():
+    ss_between = sum(len(df[df[col]==c]["Mental_Health_Score"].dropna()) * ((df[df[col]==c]["Mental_Health_Score"].dropna().mean() - grand_mean)**2) for c in df[col].dropna().unique())
+    eta_score_dict["Feature"].append(col)
+    eta_score_dict["Eta_Score"].append(ss_between / ss_total)
+
+df_eta = pd.DataFrame(eta_score_dict)
+print(df_eta)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHEET 06: Stacking Model Architecture & Pipeline -->
+      <section class="insight-card" id="sheet-06">
+        <div class="insight-card-header">
+          <h4 class="insight-card-title"><span class="sheet-eyebrow">Sheet 06</span>Stacking Model Architecture &amp; Pipeline</h4>
+          <div class="view-toggle">
+            <button class="tab-btn active" data-view="plot">📈 Interactive Diagram</button>
+            <button class="tab-btn" data-view="table">📋 Data Table</button>
+            <button class="tab-btn" data-view="code">💻 Python Code</button>
+          </div>
+        </div>
+        <div class="insight-card-body">
+          <div class="view-pane active" data-view="plot">
+            <div class="pipeline-html-wrapper" style="overflow-x: auto; padding: 16px; background: #0f172a; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+              <style>
+                #sk-container-id-5 {
+                  --sklearn-color-text: #f8fafc !important;
+                  --sklearn-color-text-muted: #94a3b8 !important;
+                  --sklearn-color-line: #334155 !important;
+                  --sklearn-color-unfitted-level-0: #1e293b !important;
+                  --sklearn-color-unfitted-level-1: #334155 !important;
+                  --sklearn-color-unfitted-level-2: #475569 !important;
+                  --sklearn-color-fitted-level-0: #0f172a !important;
+                  --sklearn-color-fitted-level-1: #1e293b !important;
+                  --sklearn-color-fitted-level-2: #334155 !important;
+                  --sklearn-color-fitted-level-3: #3b82f6 !important;
+                  --sklearn-color-background: #0f172a !important;
+                  --sklearn-color-text-on-default-background: #f8fafc !important;
+                  color: #f8fafc !important; display: block !important; width: 100% !important;
+                }
+                #sk-container-id-5 pre { padding: 4px; background: #020617; color: #38bdf8; border-radius: 4px; }
+                #sk-container-id-5 input.sk-hidden--visually { border: 0; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+                #sk-container-id-5 div.sk-dashed-wrapped { border: 1px dashed var(--sklearn-color-line); margin: 0 0.4em 0.5em 0.4em; box-sizing: border-box; padding-bottom: 0.4em; background-color: var(--sklearn-color-background); }
+                #sk-container-id-5 div.sk-container { display: block !important; position: relative; }
+                #sk-container-id-5 div.sk-text-repr-fallback { display: none; }
+                #sk-container-id-5 div.sk-parallel-item, #sk-container-id-5 div.sk-serial, #sk-container-id-5 div.sk-item { background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background)); background-size: 2px 100%; background-repeat: no-repeat; background-position: center center; }
+                #sk-container-id-5 div.sk-parallel-item::after { content: ""; width: 100%; border-bottom: 2px solid var(--sklearn-color-text-on-default-background); flex-grow: 1; }
+                #sk-container-id-5 div.sk-parallel { display: flex; align-items: stretch; justify-content: center; background-color: var(--sklearn-color-background); position: relative; }
+                #sk-container-id-5 div.sk-parallel-item { display: flex; flex-direction: column; }
+                #sk-container-id-5 div.sk-parallel-item:first-child::after { align-self: flex-end; width: 50%; }
+                #sk-container-id-5 div.sk-parallel-item:last-child::after { align-self: flex-start; width: 50%; }
+                #sk-container-id-5 div.sk-serial { display: flex; flex-direction: column; align-items: center; background-color: var(--sklearn-color-background); padding-right: 1em; padding-left: 1em; }
+                #sk-container-id-5 div.sk-toggleable { background-color: var(--sklearn-color-background); }
+                #sk-container-id-5 label.sk-toggleable__label { cursor: pointer; display: flex; width: 100%; margin-bottom: 0; padding: 0.5em; box-sizing: border-box; text-align: center; align-items: center; justify-content: center; gap: 0.5em; color: #f8fafc !important; }
+                #sk-container-id-5 label.sk-toggleable__label-arrow:before { content: "▸"; float: left; margin-right: 0.25em; color: #38bdf8; }
+                #sk-container-id-5 div.sk-toggleable__content { display: none; text-align: left; background-color: #1e293b; padding: 8px; border-radius: 4px; }
+                #sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content { display: block !important; width: 100%; overflow: visible; }
+                #sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before { content: "▾"; }
+                #sk-container-id-5 div.sk-estimator { font-family: monospace; border: 1px dotted #475569; border-radius: 0.25em; margin-bottom: 0.5em; background-color: #1e293b; }
+                #sk-container-id-5 div.sk-estimator:hover { background-color: #334155; }
+                .estimator-table { font-family: monospace; color: #f8fafc; }
+                .estimator-table summary { padding: .5rem; cursor: pointer; color: #38bdf8; }
+                .estimator-table table td { border: 1px solid #334155; padding: 4px 8px; }
+                .estimator-table .parameters-table tr:nth-child(odd) { background-color: #0f172a; }
+                .estimator-table .parameters-table tr:nth-child(even) { background-color: #1e293b; }
+                .user-set td { color: #f97316 !important; }
+              </style>
+
+              <div id="sk-container-id-5" class="sk-top-container dark">
+                <div class="sk-serial">
+                  <div class="sk-item sk-dashed-wrapped">
+                    <div class="sk-label-container">
+                      <div class="sk-label fitted sk-toggleable">
+                        <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-83" type="checkbox">
+                        <label for="sk-estimator-id-83" class="sk-toggleable__label fitted sk-toggleable__label-arrow">
+                          <div><div>Pipeline</div></div>
+                          <span class="sk-estimator-doc-link fitted">i<span>Fitted Stacking Pipeline</span></span>
+                        </label>
+                        <div class="sk-toggleable__content fitted">
+                          <pre>Pipeline(steps=[
+  ('Process', ColumnTransformer(transformers=[
+    ('skewd', Pipeline(steps=[('Impute', SimpleImputer(strategy='median')), ('Log_Transformation', FunctionTransformer(func=np.log1p)), ('Scale', StandardScaler())]), ['Study_Hours']),
+    ('ordenal_encode', Pipeline(steps=[('Impute', SimpleImputer(strategy='most_frequent')), ('Ord_Encode', OrdinalEncoder())]), ['Academic_Level', 'Stress_Level']),
+    ('onehot_encode', Pipeline(steps=[('Impute', SimpleImputer(strategy='most_frequent')), ('OH_encode', OneHotEncoder(handle_unknown='ignore'))]), ['Gender', 'Most_Used_Platform', 'Purpose_Of_Use', 'Groupd_contry']),
+    ('Scale', Pipeline(steps=[('impute', SimpleImputer(strategy='median')), ('Scale', StandardScaler())]), ['Age', 'Avg_Daily_Usage_Hours', 'Daily_Unlocks', 'Physical_Activity_Hours', 'Sleep_Hours_Per_Night'])
+  ])),
+  ('model', StackingRegressor(cv=KFold(n_splits=5, shuffle=True),
+    estimators=[('lr', LinearRegression()), ('KNN', KNeighborsRegressor(weights='distance')), ('GBR', GradientBoostingRegressor(n_estimators=120)), ('RFR', RandomForestRegressor(n_estimators=120))],
+    final_estimator=Ridge(alpha=1.2)))
+])</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sk-serial">
+                    <div class="sk-item sk-dashed-wrapped">
+                      <div class="sk-label-container">
+                        <div class="sk-label fitted sk-toggleable">
+                          <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-84" type="checkbox">
+                          <label for="sk-estimator-id-84" class="sk-toggleable__label fitted sk-toggleable__label-arrow">
+                            <div><div>Process: ColumnTransformer</div></div>
+                          </label>
+                          <div class="sk-toggleable__content fitted">
+                            <div class="estimator-table">
+                              <details open>
+                                <summary>Transformers Overview</summary>
+                                <table class="parameters-table">
+                                  <tr class="user-set"><td>skewd</td><td>Imputer + Log1p + StandardScaler</td><td>['Study_Hours']</td></tr>
+                                  <tr class="user-set"><td>ordenal_encode</td><td>Imputer + OrdinalEncoder</td><td>['Academic_Level', 'Stress_Level']</td></tr>
+                                  <tr class="user-set"><td>onehot_encode</td><td>Imputer + OneHotEncoder</td><td>['Gender', 'Most_Used_Platform', 'Purpose_Of_Use', 'Groupd_contry']</td></tr>
+                                  <tr class="user-set"><td>Scale</td><td>Imputer + StandardScaler</td><td>['Age', 'Avg_Daily_Usage_Hours', 'Daily_Unlocks', 'Physical_Activity_Hours', 'Sleep_Hours_Per_Night']</td></tr>
+                                </table>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="sk-parallel">
+                        <div class="sk-parallel-item">
+                          <div class="sk-estimator fitted sk-toggleable">
+                            <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-86" type="checkbox">
+                            <label for="sk-estimator-id-86" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>skewd: SimpleImputer (median)</div></div></label>
+                            <div class="sk-toggleable__content fitted"><p style="font-size:11px; margin:4px;">Strategy: <b>median</b> | Missing: <b>NaN</b></p></div>
+                          </div>
+                        </div>
+
+                        <div class="sk-parallel-item">
+                          <div class="sk-estimator fitted sk-toggleable">
+                            <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-91" type="checkbox">
+                            <label for="sk-estimator-id-91" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>ordenal_encode: OrdinalEncoder</div></div></label>
+                            <div class="sk-toggleable__content fitted"><p style="font-size:11px; margin:4px;">Categories: <b>[['High School', 'Undergraduate', 'Graduate'], ['Low', 'Medium', 'High', 'Very High']]</b></p></div>
+                          </div>
+                        </div>
+
+                        <div class="sk-parallel-item">
+                          <div class="sk-estimator fitted sk-toggleable">
+                            <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-94" type="checkbox">
+                            <label for="sk-estimator-id-94" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>onehot_encode: OneHotEncoder</div></div></label>
+                            <div class="sk-toggleable__content fitted"><p style="font-size:11px; margin:4px;">Handle Unknown: <b>ignore</b> | Sparse Output: <b>True</b></p></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="sk-item sk-dashed-wrapped" style="margin-top: 15px;">
+                      <div class="sk-label-container">
+                        <div class="sk-label fitted sk-toggleable">
+                          <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-100" type="checkbox">
+                          <label for="sk-estimator-id-100" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>model: StackingRegressor</div></div></label>
+                          <div class="sk-toggleable__content fitted">
+                            <div class="estimator-table">
+                              <details open>
+                                <summary>Stacking Configuration &amp; Final Meta Estimator</summary>
+                                <table class="parameters-table">
+                                  <tr class="user-set"><td>Base Models</td><td>LinearRegression, KNN(distance), GBR(120), RFR(120)</td></tr>
+                                  <tr class="user-set"><td>Meta Estimator</td><td><b>Ridge (alpha=1.2)</b></td></tr>
+                                  <tr class="user-set"><td>CV Splits</td><td>KFold (n_splits=5, shuffle=True, random_state=42)</td></tr>
+                                </table>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="sk-parallel">
+                        <div class="sk-parallel-item">
+                          <div class="sk-estimator fitted sk-toggleable">
+                            <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-101" type="checkbox">
+                            <label for="sk-estimator-id-101" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Base: LinearRegression</div></div></label>
+                            <div class="sk-toggleable__content fitted"><p style="font-size:11px; margin:4px;">fit_intercept=True</p></div>
+                          </div>
+                        </div>
+
+                        <div class="sk-parallel-item">
+                          <div class="sk-estimator fitted sk-toggleable">
+                            <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-102" type="checkbox">
+                            <label for="sk-estimator-id-102" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Base: KNN Regressor</div></div></label>
+                            <div class="sk-toggleable__content fitted"><p style="font-size:11px; margin:4px;">n_neighbors=5 | weights='distance'</p></div>
+                          </div>
+                        </div>
+
+                        <div class="sk-parallel-item">
+                          <div class="sk-estimator fitted sk-toggleable">
+                            <input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-105" type="checkbox">
+                            <label for="sk-estimator-id-105" class="sk-toggleable__label fitted sk-toggleable__label-arrow" style="background:#1e3a8a; border:1px solid #3b82f6;"><div><div>🎯 Meta Model: Ridge (alpha=1.2)</div></div></label>
+                            <div class="sk-toggleable__content fitted"><p style="font-size:11px; margin:4px; color:#38bdf8;">Alpha: <b>1.2</b> | Solver: <b>auto</b> | Fit Intercept: <b>True</b></p></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="view-pane" data-view="table">
+            <table class="insight-table">
+              <thead><tr><th>Role</th><th>Estimator Name</th><th>Key Parameters / Config</th></tr></thead>
+              <tbody>
+                <tr><td>Base Estimator 1</td><td>Linear Regression</td><td>default</td></tr>
+                <tr><td>Base Estimator 2</td><td>KNN Regressor</td><td>n_neighbors=5, weights='distance'</td></tr>
+                <tr><td>Base Estimator 3</td><td>Gradient Boosting Regressor</td><td>n_estimators=120, random_state=42</td></tr>
+                <tr><td>Base Estimator 4</td><td>Random Forest Regressor</td><td>n_estimators=120, criterion='squared_error'</td></tr>
+                <tr class="row-highlight"><td>Meta Estimator</td><td>Ridge Regressor</td><td><b>alpha=1.2</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="view-pane" data-view="code">
+            <pre><code>from sklearn.ensemble import StackingRegressor, RandomForestRegressor, GradientBoostingRegressor
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.model_selection import KFold
+
+base_model = [
+    ("lr", LinearRegression()),
+    ("KNN", KNeighborsRegressor(n_neighbors=5, weights="distance")),
+    ("GBR", GradientBoostingRegressor(n_estimators=120, random_state=42)),
+    ("RFR", RandomForestRegressor(n_estimators=120, criterion="squared_error"))
+]
+
+meta_model = Ridge(alpha=1.2)
+
+stack_pipe = StackingRegressor(
+    estimators=base_model,
+    final_estimator=meta_model,
+    cv=KFold(n_splits=5, shuffle=True, random_state=42)
+)
+
+stack_pipe.fit(X_train, y_train)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHEET 07: Model Performance & R² Comparison -->
+      <section class="insight-card" id="sheet-07">
+        <div class="insight-card-header">
+          <h4 class="insight-card-title"><span class="sheet-eyebrow">Sheet 07</span>Model Performance &amp; R² Comparison</h4>
+          <div class="view-toggle">
+            <button class="tab-btn active" data-view="plot">📈 Plot View</button>
+            <button class="tab-btn" data-view="table">📋 Data Table</button>
+            <button class="tab-btn" data-view="code">💻 Python Code</button>
+          </div>
+        </div>
+        <div class="insight-card-body">
+          <div class="view-pane active" data-view="plot">
+            <img class="insight-img" src="assets/plots/r2_adj_r2_comparison.png" alt="R² and Adjusted R² comparison across LR, RF, and Stacking models">
+          </div>
+          <div class="view-pane" data-view="table">
+            <table class="insight-table">
+              <thead>
+                <tr><th>Model</th><th>Train R²</th><th>Test R²</th><th>Train Adj R²</th><th>Test Adj R²</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Linear Regression (LR)</td><td>0.7303</td><td>0.7454</td><td>0.7277</td><td>0.7353</td></tr>
+                <tr><td>Random Forest (RF)</td><td>0.7951</td><td>0.7910</td><td>0.7931</td><td>0.7828</td></tr>
+                <tr class="row-highlight"><td>Stacking Regressor</td><td>0.9943</td><td>0.9196</td><td>0.9943</td><td>0.9164</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="view-pane" data-view="code">
+            <pre><code>def scores(pipeline, X_data, y_true, y_pred, train_or_test, model_name):
+    r2 = r2_score(y_true, y_pred)
+    n, p = len(X_data), pipeline.named_steps["Process"].transform(X_data).shape[1]
+    adjr2 = 1 - ((1 - r2) * (n - 1) / (n - p - 1))
+    mse, mae = mean_squared_error(y_true, y_pred), mean_absolute_error(y_true, y_pred)
+    return pd.DataFrame(
+        [r2, adjr2, mse, mae],
+        index=["R Square", "Adjusted R Square", "MSE", "MAE"],
+        columns=[train_or_test + " " + model_name]
+    )</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHEET 08: Error Metrics (MSE & MAE) -->
+      <section class="insight-card" id="sheet-08">
+        <div class="insight-card-header">
+          <h4 class="insight-card-title"><span class="sheet-eyebrow">Sheet 08</span>Error Metrics (MSE &amp; MAE)</h4>
+          <div class="view-toggle">
+            <button class="tab-btn active" data-view="plot">📈 Plot View</button>
+            <button class="tab-btn" data-view="table">📋 Data Table</button>
+            <button class="tab-btn" data-view="code">💻 Python Code</button>
+          </div>
+        </div>
+        <div class="insight-card-body">
+          <div class="view-pane active" data-view="plot">
+            <img class="insight-img" src="assets/plots/error_metrics_comparison.png" alt="MSE and MAE comparison across models">
+          </div>
+          <div class="view-pane" data-view="table">
+            <table class="insight-table">
+              <thead><tr><th>Model</th><th>Test MSE</th><th>Test MAE</th></tr></thead>
+              <tbody>
+                <tr><td>Linear Regression (LR)</td><td>4.82</td><td>1.74</td></tr>
+                <tr><td>Random Forest (RF)</td><td>3.61</td><td>1.42</td></tr>
+                <tr class="row-highlight"><td>Stacking Regressor</td><td>2.98</td><td>1.21</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="view-pane" data-view="code">
+            <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+error_df = pd.DataFrame({
+    "Model": ["Linear Regression", "Random Forest", "Stacking Regressor"],
+    "MSE":   [mse_lr, mse_rf, mse_stack],
+    "MAE":   [mae_lr, mae_rf, mae_stack],
+})
+error_melt = error_df.melt(id_vars="Model", var_name="Metric", value_name="Value")
+
+plt.figure(figsize=(7, 4.5))
+sns.barplot(data=error_melt, x="Model", y="Value", hue="Metric", palette="Set2")
+plt.title("Error Metrics Comparison (MSE vs MAE)")
+plt.tight_layout()
+plt.savefig("assets/plots/error_metrics_comparison.png", dpi=150)</code></pre>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="footer">© 2026 MindPulse AI. Precision Mental Health Analytics — model insights for transparency, not clinical use.</footer>
+</div>
+
+<!-- ============ PAGE SCRIPT ============ -->
+<script>
+  // ---------------- Theme toggle ----------------
+  const themeToggle = document.getElementById("themeToggle");
+  themeToggle.addEventListener("click", () => {
+    const current = document.body.getAttribute("data-theme");
+    document.body.setAttribute("data-theme", current === "light" ? "dark" : "light");
+  });
+
+  // ---------------- Tab switching (Plot / Table / Code) — per card ----------------
+  document.querySelectorAll(".insight-card").forEach((card) => {
+    const tabButtons = card.querySelectorAll(".tab-btn");
+    const panes = card.querySelectorAll(".view-pane");
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.view;
+        tabButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        panes.forEach((p) => p.classList.toggle("active", p.dataset.view === target));
+      });
+    });
+  });
+
+  // ---------------- Sidebar scroll-spy ----------------
+  const sidebarLinks = document.querySelectorAll(".sidebar-link");
+  const sheetSections = document.querySelectorAll(".insights-main .insight-card");
+
+  const spyObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          sidebarLinks.forEach((link) => {
+            link.classList.toggle("active", link.dataset.target === entry.target.id);
+          });
+        }
+      });
+    },
+    { rootMargin: "-96px 0px -65% 0px", threshold: 0 }
+  );
+  sheetSections.forEach((sec) => spyObserver.observe(sec));
+
+  // ---------------- Smooth scroll on sidebar click ----------------
+  sidebarLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = document.getElementById(link.dataset.target);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+</script>
+</body>
+</html>
