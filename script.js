@@ -11,7 +11,7 @@
 
 // ---------------- Config ----------------
 // Change this if your FastAPI server runs on a different host/port.
-let API_BASE = "http://127.0.0.1:8000";
+let API_BASE = "https://mentel-health-score-predicter.onrender.com";
 
 const PLATFORMS = [
   { val: "Facebook",  code: "FB" },
